@@ -2,7 +2,7 @@
 title: Machine Learning for Accelerator Physics # your site title
 author: Kilean (Kyung Ryun) Hwang # You :P
 description: > # Meta description of Homepage
-  Experiments on machine learning for accelerator physics application. Purpose: get insight on listed topics by invitiing people for discussion
+  Experiments on machine learning for accelerator physics application. Please contact me to leave any comments. It may help me to get insight on listed topics.
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://kilean20.github.io/" 
 
