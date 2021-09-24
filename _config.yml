@@ -1,8 +1,9 @@
 # SITE CONFIGURATION
-title: ML for Accelerator Physics # your site title
+title: Machine Learning for Accelerator Physics # your site title
 author: Kilean (Kyung Ryun) Hwang # You :P
 description: > # Meta description of Homepage
   Experiments on machine learning for accelerator physics application
+  purpose: get insight on listed topics by invitiing people for discussion
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://kilean20.github.io/" 
 
