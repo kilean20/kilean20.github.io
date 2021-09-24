@@ -5,12 +5,16 @@ featured-img: bifidel_GPvsNN_cover
 image: bifidel_GPvsNN
 category: [bayesian, regression, multi-fidelity]
 mathjax: true
-summary: Experiment with the Bi-fidelity Bayesian method on a toy model using Neural Network Ensemble (bagging and random prior) and compare it with Gaussian Process
+summary: Experiment with the Bi-fidelity method on a toy model using (Bayesian) Bootstrap aggregating Neural Network and compare it with Gaussian Process
 ---
 
+
+# Problem statement
 The cost of acquiring enough **high-fidelity (HF)** data from the simulations or experiments can be daunting. When much cheaper but less accurate **low-fidelity (LF)** data is available, multi-fidelity modeling <sup>[1](https://mlatcl.github.io/mlphysical/lectures/05-02-multifidelity.html)/<sup> methods augment the limited **HF** data with cheaply-obtained **LF** approximations.
 
-The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. 
+The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. In this post, we demonstrate Bi-fidelity modeling performance on a toy model using Bayesian Neural-Network ensemble and compare it with the Gaussian Process.
+
+
 
 # 1. Toy Model
 
@@ -58,7 +62,7 @@ This approach is called deep GP in analogous with deep neural network. Again, Us
 
 ![]({{ "assets/img/bifidel_GPvsNN/nonlinear-bi-fidelity-GP.jpg" | absolute_url }})
 
-Although, nonlinear assumption between the fildulities is more general than the linear assumption, the result above is disappointing compared to the linear bi-fidelity GP result. However, this actually can be understood and anticipated from the fact that the two fideilities of our toy model are very close each other linearly. 
+Although, nonlinear assumption between the fildelities is more general than the linear assumption, the result above is disappointing in a sense that it is over-confident. In other words, the uncertainty prediction did not cover the true **HF** curve. This may ascribed to the fact that the two fideilities of our toy model are very close each other linearly. 
 
 
 # 3. Bootstrap aggregating (*Bagging*) Neural-Network (NN)
@@ -67,7 +71,7 @@ Although GP is exact Bayesian, the compuational complexity renders it impractica
 The principle of ensembling for uncertainty quantification follows from the fact that:
 	- Each NN tend to converge near the data points but vary over regions (of input domain) where data is absent.
 Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)<\sup> over NN. Using different boostrapped data to train each NN further helps to avoid overfit. 
-Furthermore, each NN is equipped with random prior.<sup>[3](https://arxiv.org/pdf/1506.02142.pdf)<\sup> This helps each NN to diverge further over the regions where data is absent.
+
 
 ### 3.1 Single fidelity *Bagging* NN 
 
@@ -92,5 +96,4 @@ Using 20 **HF** and 200 **LF** data,
 * 2. [Bagging](https://www.stat.berkeley.edu/~breiman/bagging.pdf) 
 * 3. [Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning](https://arxiv.org/pdf/1506.02142.pdf): arguments that dropout (at test time) in NNs has a connection to gaussian processes and motivates its usage as a bayesian method
 * 4. [Risk versus Uncertainty in Deep Learning: Bayes, Bootstrap and the Dangers of Dropout](http://bayesiandeeplearning.org/2016/papers/BDL_4.pdf): motivates that dropout with fixed $p$ estimates risk and not uncertainty
-* 5. [Randomized Prior Funcions for Deep Reinforcement Learning](https://papers.nips.cc/paper/8080-randomized-prior-functions-for-deep-reinforcement-learning.pdf): shows the shortcomings with other techniques and motivates the use of bootstrap and prior functions
 
