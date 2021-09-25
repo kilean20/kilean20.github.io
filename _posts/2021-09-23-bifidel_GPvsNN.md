@@ -36,8 +36,10 @@ Throughout this post, we consider a scenario that the cost of **LF** data acquis
 
 # 2. Gaussian Process (GP)
 
-(#2-1)
-### 2.1 Single Fidelity GP
+
+
+### 2.1 Single Fidelity GP(#2.1-single-fidelity)
+
 Here, single fidelity GP is trained on the **HF** data. To be fair, I used 40 **HF** data ( which is more expensive than 20 **HF** data and 200 **LF** data by assumption ) to train GP. The [RBF kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel) is assumed and it's hyper parameters are optimized for maximum likelihood of data. Following plot shows the result.
 <p align="center">
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-GP.jpg" />
@@ -86,6 +88,7 @@ The principle of ensembling for uncertainty quantification is:
 
 Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> of NNs. Using different boostrapped data to train each NN can further helps to avoid overfit. 
 
+
 (#3-1)
 ### 3.1 Single fidelity *Bagging* NN
 
@@ -94,7 +97,8 @@ For performance comparison against the bi-fidelity model, here, we used 40 **HF*
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" />
 </p>
 
-Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#2-1)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#2.1-single-fidelity)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+ 
  
 ### 3.2 Bi-fidelity *Bagging* NN
 
@@ -131,6 +135,8 @@ Observe that the prediction is better than the single fidelity [result](#3-1). A
 
 
 # 4. Conclusion
+
+We constructed the bi-fidelity model using *Bagging* NNs in a Bayesian way and compared it with the bi-fidelity gaussian process. 
 
 
 # References
