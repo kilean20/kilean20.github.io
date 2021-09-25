@@ -112,10 +112,16 @@ using the following structure.
 Note that this way, the new NN predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
 
 
-![]({{ "assets/img/bifidel_GPvsNN/low-fidelity-baggingNN.jpg" | absolute_url }})
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/low-fidelity-baggingNN.jpg" />
+</p>
+
 
 Using 20 **HF** and 200 **LF** data,
-![]({{ "assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" | absolute_url }})
+
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" />
+</p>
 
 
 
