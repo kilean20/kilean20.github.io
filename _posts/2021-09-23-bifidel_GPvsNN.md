@@ -130,7 +130,7 @@ Once, I built the prior, I used the 20 **HF** data to train the **HF** surrogate
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" />
 </p>
 
-Observe that the prediction is better than the single fidelity [result](#31-single-fidelity-*bagging*-nn). Again, the bias of the mean in $x\in(0.25,0.75)$ can be understood by the lack of **HF** data. And again, the uncertainty prediction does not cover the ground truth of the **HF** target function. This result suggests again that *Bagging* NNs are not enough for uncertainty quantification for this problem. We will cover this topic in other posts. 
+Observe that the prediction is better than the single fidelity [result](#31-single-fidelity-bagging-nn). Again, the bias of the mean in $x\in(0.25,0.75)$ can be understood by the lack of **HF** data. And again, the uncertainty prediction does not cover the ground truth of the **HF** target function. This result suggests again that *Bagging* NNs are not enough for uncertainty quantification for this problem. We will cover this topic in other posts. 
 
 
 # 4. Conclusion
