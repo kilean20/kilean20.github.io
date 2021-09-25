@@ -10,7 +10,7 @@ summary: Experiment with the Bi-fidelity method on a toy model using (Bayesian) 
 
 
 # Problem statement
-The cost of acquiring enough **high-fidelity (HF)** data from the simulations or experiments can be daunting. When much cheaper but less accurate **low-fidelity (LF)** data is available, multi-fidelity modeling <sup>[1](https://mlatcl.github.io/mlphysical/lectures/05-02-multifidelity.html)/<sup> methods augment the limited **HF** data with cheaply-obtained **LF** approximations.
+The cost of acquiring enough **high-fidelity (HF)** data from the simulations or experiments can be daunting. When much cheaper but less accurate **low-fidelity (LF)** data is available, multi-fidelity modeling <sup>[1](https://mlatcl.github.io/mlphysical/lectures/05-02-multifidelity.html)</sup> methods augment the limited **HF** data with cheaply-obtained **LF** approximations.
 
 The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. In this post, we demonstrate Bi-fidelity modeling performance on a toy model using Bayesian Neural-Network ensemble and compare it with the Gaussian Process.
 
@@ -70,7 +70,7 @@ Although, nonlinear assumption between the fildelities is more general than the 
 Although GP is exact Bayesian, the compuational complexity renders it impractical (without approximation) for high-dimensional problem. Here, we use ensemble neural network method to construct the bi-fidelity bayesian surrogate model. 
 The principle of ensembling for uncertainty quantification follows from the fact that:
 	- Each NN tend to converge near the data points but vary over regions (of input domain) where data is absent.
-Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)<\sup> over NN. Using different boostrapped data to train each NN further helps to avoid overfit. 
+Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> over NN. Using different boostrapped data to train each NN further helps to avoid overfit. 
 
 
 ### 3.1 Single fidelity *Bagging* NN 
