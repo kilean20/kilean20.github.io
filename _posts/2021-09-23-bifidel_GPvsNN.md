@@ -86,15 +86,15 @@ The principle of ensembling for uncertainty quantification is:
 
 Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> of NNs. Using different boostrapped data to train each NN can further helps to avoid overfit. 
 
-
-(### 3.1 Single fidelity *Bagging* NN)
+[create an anchor](#3-1)
+### 3.1 Single fidelity *Bagging* NN
 
 For performance comparison against the bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
 <p align="center">
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" />
 </p>
 
-Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](# 2.1 Single Fidelity GP)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#3-1)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
  
 ### 3.2 Bi-fidelity *Bagging* NN
 
