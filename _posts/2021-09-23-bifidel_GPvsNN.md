@@ -26,7 +26,7 @@ $$ y = A x^2 - B \exp{ \left(\sum_i^n c_i \cos (w_i x-b_i)\right)} $$
 
 where the parameters are arbitrarily chosen such that the **HF** and **LF** are slightly different as shown below:
 <p align="center">
-  <img src="./assets/img/bifidel_GPvsNN/toymodel.jpg" />
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/toymodel.jpg" />
 </p>
 [comment]: <> (![]({{ "assets/img/bifidel_GPvsNN/toymodel.jpg" | absolute_url }}))
 
@@ -39,7 +39,9 @@ Throughout this post, we consider a scenario that the cost of **LF** data acquis
 
 ### 2.1 Single Fidelity GP
 Here, single fidelity GP is trained on the **HF** data. To be fair, I used 40 **HF** data ( which is more expensive than 20 **HF** data and 200 **LF** data by assumption ) to train GP. The [RBF kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel) is assumed and it's hyper parameters are optimized for maximum likelihood of data. Following plot shows the result.
-![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-GP.jpg" | absolute_url }})
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-GP.jpg" />
+</p>
 
 Observe that where the data points are few, GP predicts large uncertainty (. Note also that the **HF** ground truth is well within the GP predicted undertainty.
 
@@ -87,12 +89,13 @@ Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bag
 For performance comparison of bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
 ![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" | absolute_url }})
 
-### 3.1 Low fidelity *Bagging* NN 
+
+### 3.2 Bi-fidelity Bagging NN
+
+In order to construct bi-fidelity Bayesian 
 
 Using 200 **LF** data,
 ![]({{ "assets/img/bifidel_GPvsNN/low-fidelity-baggingNN.jpg" | absolute_url }})
-
-### 3.2 Bi-fidelity Bagging NN
 
 Using 20 **HF** and 200 **LF** data,
 ![]({{ "assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" | absolute_url }})
