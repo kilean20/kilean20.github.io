@@ -10,31 +10,34 @@ summary: Experiment with the Bi-fidelity method on a toy model using (Bayesian) 
 
 
 # Problem statement
-The cost of acquiring enough **high-fidelity (HF)** data from the simulations or experiments can be daunting. When much cheaper but less accurate **low-fidelity (LF)** data is available, multi-fidelity modeling <sup>[1](https://mlatcl.github.io/mlphysical/lectures/05-02-multifidelity.html)</sup> methods augment the limited **HF** data with cheaply-obtained **LF** approximations.
+The cost of acquiring enough **high-fidelity (HF)** data from the heavy simulations or experiments can be daunting. When much cheaper but less accurate **low-fidelity (LF)** data is available, multi-fidelity modeling <sup>[1](https://mlatcl.github.io/mlphysical/lectures/05-02-multifidelity.html)</sup> methods augment the limited **HF** data with cheaply-obtained **LF** approximations.
 
-The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. In this post, we demonstrate Bi-fidelity modeling performance on a toy model using Bayesian Neural-Network ensemble and compare it with the Gaussian Process.
+The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. In this post, I demonstrate Bi-fidelity modeling performance on a toy model using Bayesian Neural-Network ensemble and compare it with the Gaussian Process. 
+
+In addition, Bayesian paradigm propagates uncertaintyies between fideilities. This is very useful information for surrogate model based decision making.
 
 
 
 # 1. Toy Model
 
-I use the following toy model:
+Let the toy model be in the following form:
 
 $$ y = A x^2 - B \exp{ \left(\sum_i^n c_i \cos (w_i x-b_i)\right)} $$
 
-where the parameters are arbitrarily chosen such that the **HF** and **LF** are slightly different. I consider a scenario that the **LF** toy model is not very different from the **HF** toy model.
+where the parameters are arbitrarily chosen such that the **HF** and **LF** are slightly different as shown below:
 ![]({{ "assets/img/bifidel_GPvsNN/toymodel.jpg" | absolute_url }})
 
-I also consider a scenario that the cost of **LF** data acquisition is less than one-tenth of the cost of the **HF** data acquisition. For example, the cost of acquiring 20 high-fidelity data is more expensive than the cost of acquiring 10 high-fidelity data and 100 low-fidelity data. In this regard, the data shown in the plot are randomly chosen 200 points for **LF** and 20 for **HF**.
+Throughout this post, we consider a scenario that the cost of **LF** data acquisition is less than one-tenth of the cost of the **HF** data acquisition. For example, the cost of acquiring 20 high-fidelity data is more expensive than the cost of acquiring 10 high-fidelity data and 100 low-fidelity data. In this regard, the data shown in the plot are randomly chosen 200 points for **LF** and 20 for **HF**. Note that all the data is noiselss, i.e., well aligned with the ground truth toy model. Therefore, we expect that a good surrogate model to well capture the model uncertainty ([*epistemic uncertainty*](https://link.springer.com/article/10.1007/s10994-021-05946-3)) not the data uncertainty (i.e., *risk* or *aleatoric* uncertainty).
 
 
 # 2. Gaussian Process (GP)
 
 
 ### 2.1 Single Fidelity GP
-Let's start with the GP modeling on the **HF** data. To be fair, I used 40 **HF** data ( instead of 20 **HF** data ) to construct the GP surrogate model ( I used [RBF kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)).
+Here, single fidelity GP is trained on the **HF** data. To be fair, I used 40 **HF** data ( instead of 20 **HF** data ) to train GP. The [RBF kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel) is assumed and it's hyper parameters are optimized for maximum likelihood of data. Following plot shows the result.
 ![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-GP.jpg" | absolute_url }})
-observe that where the data points are scarce, large model uncertainty (*epistemic uncertainty*) is present. 
+
+Observe that where the data points are few, GP predicts large uncertainty. Note also that the **HF** ground truth is well within prediced undertainty.
 
 
 ### 2.2 Linear bi-fidelity GP
