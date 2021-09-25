@@ -90,11 +90,22 @@ For performance comparison of bi-fidelity model, here, we used 40 **HF** data to
 ![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" | absolute_url }})
 
 
-### 3.2 Bi-fidelity Bagging NN
+### 3.2 Bi-fidelity *Bagging* NN
 
-In order to construct bi-fidelity Bayesian 
+In order to build the bi-fidelity model in a Bayesian way, I first created the prior belief: The ensemble NNs trained using bootstrapped data out of the 200 **LF** data. Then each the **LF** NN model is connected to the output of a new NN which represent the **HF** model that is going to be trained using **HF** data. Specifically, we want to represent the linear relation b/w the **LF** and **HF** model 
 
-Using 200 **LF** data,
+$$
+f_H(x) = f_{\text{err}}(x) + \rho \,f_L(x)
+$$
+
+using the following structure.
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/BiFidel_BaggingNN.png />
+</p>
+
+Note that this way, the new NN predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
+
+
 ![]({{ "assets/img/bifidel_GPvsNN/low-fidelity-baggingNN.jpg" | absolute_url }})
 
 Using 20 **HF** and 200 **LF** data,
