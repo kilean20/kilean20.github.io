@@ -36,7 +36,7 @@ Throughout this post, we consider a scenario that the cost of **LF** data acquis
 
 # 2. Gaussian Process (GP)
 
-
+(#2-1)
 ### 2.1 Single Fidelity GP
 Here, single fidelity GP is trained on the **HF** data. To be fair, I used 40 **HF** data ( which is more expensive than 20 **HF** data and 200 **LF** data by assumption ) to train GP. The [RBF kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel) is assumed and it's hyper parameters are optimized for maximum likelihood of data. Following plot shows the result.
 <p align="center">
@@ -94,7 +94,7 @@ For performance comparison against the bi-fidelity model, here, we used 40 **HF*
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" />
 </p>
 
-Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#3-1)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#2-1)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
  
 ### 3.2 Bi-fidelity *Bagging* NN
 
@@ -114,18 +114,23 @@ using the following structure.
 
 Note that this way, the NNs on the right predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
 
+The following is the plot of **LF** surrogate model trained using 200 **LF** data.
 
 <p align="center">
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/low-fidelity-baggingNN.jpg" />
 </p>
 
 
-Using 20 **HF** and 200 **LF** data,
+Once, I built the prior, I used the 20 **HF** data to train the **HF** surrogate model. The following plot is the result.
 
 <p align="center">
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" />
 </p>
 
+Observe that the prediction is better than the single fidelity [result](#3-1). Again, the bias of the mean in $x\in(0.25,0.75)$ can be understood by the lack of **HF** data. And again, the uncertainty prediction does not cover the groud truth of the **HF** target function. This result suggests again that *Bagging* NNs are not enough for uncertainty quantification for this problem. We will cover this topic in other posts. 
+
+
+# 4. Conclusion
 
 
 # References
