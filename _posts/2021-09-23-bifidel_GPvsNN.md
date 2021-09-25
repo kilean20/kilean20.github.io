@@ -106,11 +106,13 @@ $$
 
 using the following structure.
 
+
 <p align="center">
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/BiFidel_BaggingNN.png" />
 </p>
 
-Note that this way, the new NN predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
+
+Note that this way, the NNs on the right predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
 
 
 <p align="center">
