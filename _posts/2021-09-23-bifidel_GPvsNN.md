@@ -98,7 +98,7 @@ Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction 
  
 ### 3.2 Bi-fidelity *Bagging* NN
 
-In order to build the bi-fidelity model in a Bayesian way, I first created the prior belief: The ensemble NNs trained using bootstrapped data out of the 200 **LF** data. Then each the **LF** NN model is connected to the output of a new NN which represent the **HF** model that is going to be trained using **HF** data. Specifically, we want to represent the linear relation b/w the **LF** and **HF** model 
+In order to build the bi-fidelity model in a Bayesian way, I first created the prior belief: The ensemble NNs trained using bootstrapped data out of the 200 **LF** data. Then each the **LF** NN model is connected to the output of a new NN which represent the **HF** model that is going to be trained using **HF** data. Specifically, I represent the linear relation b/w the **LF** and **HF** model 
 
 $$
 f_H(x) = f_{\text{err}}(x) + \rho \,f_L(x)
