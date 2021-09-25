@@ -136,7 +136,10 @@ Observe that the prediction is better than the single fidelity [result](#3-1). A
 
 # 4. Conclusion
 
-We constructed the bi-fidelity model using *Bagging* NNs in a Bayesian way and compared it with the bi-fidelity gaussian process. 
+I constructed the bi-fidelity model using *Bagging* NNs in a Bayesian way and compared it with the bi-fidelity gaussian process. I experimented them on a regression problem over a toy model and observed that the bi-fidelity model prediction outperform the single fidelity model. I also find that naive application of *Bagging* NN is not enough for *epistemic* uncertainty quantification in this toy model where the target function consists of high frequency spectrum. I suspect that the problem is due to the freuqency bias of NN. I will cover this problem in a separate post. 
+
+
+*Thank you, please contact me to leave any comments or questions*
 
 
 # References
