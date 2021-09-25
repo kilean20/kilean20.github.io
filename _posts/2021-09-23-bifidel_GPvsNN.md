@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Experiment on Bi-fidelity Bayesian surrogate model
-featured-img: bifidel_GPvsNN_cover
-image: bifidel_GPvsNN
+featured-img: BiFidel_BaggingNN_cover
+image: BiFidel_BaggingNN
 category: [bayesian, regression, multi-fidelity]
 mathjax: true
 summary: Experiment with the Bi-fidelity method on a toy model using (Bayesian) Bootstrap aggregating Neural Network and compare it with Gaussian Process
