@@ -96,7 +96,7 @@ For performance comparison against the bi-fidelity model, here, we used 40 **HF*
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" />
 </p>
 
-Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the overconfident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#2.1-single-fidelity-gp)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the overconfident uncertainty prediction is problematic (compare it with the single fidelity GP [case](#21-single-fidelity-gp)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
  
  
 ### 3.2 Bi-fidelity *Bagging* NN
@@ -130,7 +130,7 @@ Once, I built the prior, I used the 20 **HF** data to train the **HF** surrogate
   <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/linear-bi-fidelity-baggingNN.jpg" />
 </p>
 
-Observe that the prediction is better than the single fidelity [result](#3-1). Again, the bias of the mean in $x\in(0.25,0.75)$ can be understood by the lack of **HF** data. And again, the uncertainty prediction does not cover the ground truth of the **HF** target function. This result suggests again that *Bagging* NNs are not enough for uncertainty quantification for this problem. We will cover this topic in other posts. 
+Observe that the prediction is better than the single fidelity [result](#31-single-fidelity-*bagging*-nn). Again, the bias of the mean in $x\in(0.25,0.75)$ can be understood by the lack of **HF** data. And again, the uncertainty prediction does not cover the ground truth of the **HF** target function. This result suggests again that *Bagging* NNs are not enough for uncertainty quantification for this problem. We will cover this topic in other posts. 
 
 
 # 4. Conclusion
