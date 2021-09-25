@@ -86,7 +86,7 @@ The principle of ensembling for uncertainty quantification is:
 
 Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> of NNs. Using different boostrapped data to train each NN can further helps to avoid overfit. 
 
-[create an anchor](#3-1)
+(#3-1)
 ### 3.1 Single fidelity *Bagging* NN
 
 For performance comparison against the bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
@@ -105,8 +105,9 @@ f_H(x) = f_{\text{err}}(x) + \rho \,f_L(x)
 $$
 
 using the following structure.
+
 <p align="center">
-  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/BiFidel_BaggingNN.png />
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/BiFidel_BaggingNN.png" />
 </p>
 
 Note that this way, the new NN predicts the **HF** target function conditional to the **LF** surrogate model. By ensembling them, we are constructing the prior probability from **LF** *Bagging* NNs and the conditional probability from **HF** *Bagging* NNs  
