@@ -55,8 +55,9 @@ f_H(x) = f_{\text{err}}(x) + \rho \,f_L(x)
 $$
 
 where $f_{\text{err}}(x)$ and $f_L(x)$ are assumed to be independent GP and $\rho$ is a scalar scaling factor. This can be a good approach when $f_H(x)$ depends linearly on $f_L(x)$.  Using 20 **HF** and 200 **LF** data, the linear bi-fidelity GP resulted in:
-![]({{ "assets/img/bifidel_GPvsNN/linear-bi-fidelity-GP.jpg" | absolute_url }})
-
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/linear-bi-fidelity-GP.jpg" />
+</p>
 
 
 ### 2.3 Nonlinear bi-fidelity GP
@@ -69,7 +70,9 @@ $$
 
 This approach is called deep GP in analogous with deep neural network. Again, using 20 **HF** and 200 **LF** data, the nonlinear bi-fidelity GP resulted in:
 
-![]({{ "assets/img/bifidel_GPvsNN/nonlinear-bi-fidelity-GP.jpg" | absolute_url }})
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/nonlinear-bi-fidelity-GP.jpg" />
+</p>
 
 Although, the nonlinear assumption between the two fildelities is more general than the linear assumption, the result above is disappointing in a sense that it is over-confident. In other words, the uncertainty prediction did not cover the true **HF** curve. This may ascribed to the fact that the two fideilities of our toy model are very close each other more linearly than nonlinearly. 
 
@@ -79,17 +82,17 @@ Although, the nonlinear assumption between the two fildelities is more general t
 Although GP is an exact Bayesian method, the compuational complexity renders it impractical (without approximation) for high-dimensional problem. Here, we use ensemble neural network method to construct the bi-fidelity bayesian surrogate model. 
 The principle of ensembling for uncertainty quantification is:
 
-* Each NN tend to converge where the data points are close by. However, they can vary each other over the regions (of input domain) where data is absent.
+* Each NN tend to converge where the data points are close by. However, they can vary from each other over the regions (of input domain) where data is absent.
 
 Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> of NNs. Using different boostrapped data to train each NN can further helps to avoid overfit. 
 
 
 ### 3.1 Single fidelity *Bagging* NN 
 
-For performance comparison of bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
+For performance comparison against the bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
 ![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" | absolute_url }})
-
-
+Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](### 2.1 Single Fidelity GP)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
+ 
 ### 3.2 Bi-fidelity *Bagging* NN
 
 In order to build the bi-fidelity model in a Bayesian way, I first created the prior belief: The ensemble NNs trained using bootstrapped data out of the 200 **LF** data. Then each the **LF** NN model is connected to the output of a new NN which represent the **HF** model that is going to be trained using **HF** data. Specifically, we want to represent the linear relation b/w the **LF** and **HF** model 
