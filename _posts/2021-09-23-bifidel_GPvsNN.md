@@ -26,8 +26,10 @@ $$ y = A x^2 - B \exp{ \left(\sum_i^n c_i \cos (w_i x-b_i)\right)} $$
 
 where the parameters are arbitrarily chosen such that the **HF** and **LF** are slightly different as shown below:
 <p align="center">
-![]({{ "assets/img/bifidel_GPvsNN/toymodel.jpg" | absolute_url }})
+  <img src="./assets/img/bifidel_GPvsNN/toymodel.jpg" />
 </p>
+[comment]: <> (![]({{ "assets/img/bifidel_GPvsNN/toymodel.jpg" | absolute_url }}))
+
 
 Throughout this post, we consider a scenario that the cost of **LF** data acquisition is less than one-tenth of the cost of the **HF** data acquisition. For example, the cost of acquiring 40 high-fidelity data is more expensive than the cost of acquiring 20 high-fidelity data and 200 low-fidelity data. In this regard, the data shown in the plot are randomly chosen 200 points for **LF** and 20 for **HF**. Note that all the data points are noiselss, i.e., they are well aligned with the ground truth toy model. Therefore, we expect that a good surrogate model to well capture the model uncertainty ([*epistemic*](https://link.springer.com/article/10.1007/s10994-021-05946-3) uncertainty) not the data uncertainty (i.e., *risk* or [*aleatoric*](https://link.springer.com/article/10.1007/s10994-021-05946-3) uncertainty).
 
@@ -70,19 +72,19 @@ This approach is called deep GP in analogous with deep neural network. Again, us
 Although, the nonlinear assumption between the two fildelities is more general than the linear assumption, the result above is disappointing in a sense that it is over-confident. In other words, the uncertainty prediction did not cover the true **HF** curve. This may ascribed to the fact that the two fideilities of our toy model are very close each other more linearly than nonlinearly. 
 
 
-# 3. Bootstrap aggregating (*Bagging*) Neural-Network (NN)
+# 3. Bootstrap aggregating (*Bagging*) Neural-Networks (NN)
 
 Although GP is an exact Bayesian method, the compuational complexity renders it impractical (without approximation) for high-dimensional problem. Here, we use ensemble neural network method to construct the bi-fidelity bayesian surrogate model. 
 The principle of ensembling for uncertainty quantification is:
 
 * Each NN tend to converge where the data points are close by. However, they can vary each other over the regions (of input domain) where data is absent.
 
-Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> over NN. Using different boostrapped data to train each NN can further helps to avoid overfit. 
+Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bagging.pdf)</sup> of NNs. Using different boostrapped data to train each NN can further helps to avoid overfit. 
 
 
 ### 3.1 Single fidelity *Bagging* NN 
 
-For performance comparison of bi-fidelity model, here, we used 40 **HF** data to train single fidelity model. 
+For performance comparison of bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
 ![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" | absolute_url }})
 
 ### 3.1 Low fidelity *Bagging* NN 
