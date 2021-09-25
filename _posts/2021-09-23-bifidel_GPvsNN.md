@@ -56,7 +56,7 @@ $$
 
 where $f_{\text{err}}(x)$ and $f_L(x)$ are assumed to be independent GP and $\rho$ is a scalar scaling factor. This can be a good approach when $f_H(x)$ depends linearly on $f_L(x)$.  Using 20 **HF** and 200 **LF** data, the linear bi-fidelity GP resulted in:
 <p align="center">
-  <img src="https://kilean20.github.io/assets/img/linear-bi-fidelity-GP.jpg" />
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/linear-bi-fidelity-GP.jpg" />
 </p>
 
 
@@ -71,7 +71,7 @@ $$
 This approach is called deep GP in analogous with deep neural network. Again, using 20 **HF** and 200 **LF** data, the nonlinear bi-fidelity GP resulted in:
 
 <p align="center">
-  <img src="https://kilean20.github.io/assets/img/nonlinear-bi-fidelity-GP.jpg" />
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/nonlinear-bi-fidelity-GP.jpg" />
 </p>
 
 Although, the nonlinear assumption between the two fildelities is more general than the linear assumption, the result above is disappointing in a sense that it is over-confident. In other words, the uncertainty prediction did not cover the true **HF** curve. This may ascribed to the fact that the two fideilities of our toy model are very close each other more linearly than nonlinearly. 
@@ -90,7 +90,10 @@ Specifically, I use *Bagging*<sup>[2](https://www.stat.berkeley.edu/~breiman/bag
 ### 3.1 Single fidelity *Bagging* NN 
 
 For performance comparison against the bi-fidelity model, here, we used 40 **HF** data to train *Bagging* NNs
-![]({{ "assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" | absolute_url }})
+<p align="center">
+  <img src="https://kilean20.github.io/assets/img/bifidel_GPvsNN/high-fidelity-baggingNN.jpg" />
+</p>
+
 Note that the truth in $x\in(0.25,0.75)$ is far from the mean of the prediction but also it is not within the prediction of the uncertainty. The bias of the mean can be understood by the lack of data. However, the over confident uncertainty prediction is problematic (compare it with the single fidelity GP [case](### 2.1 Single Fidelity GP)): It suggests that *Bagging* NNs are not enough. We will cover this topic in other posts. 
  
 ### 3.2 Bi-fidelity *Bagging* NN
