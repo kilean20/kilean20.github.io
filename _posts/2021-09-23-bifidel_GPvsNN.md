@@ -14,7 +14,7 @@ The cost of acquiring enough **high-fidelity (HF)** data from heavy simulations 
 
 The Bayesian paradigm provides a coherent approach for specifying sophisticated hierarchical models: The **HF** data (*evidence*) update the *posterior* (our target) model conditioned on the *prior* model (*belief*) that is constructed from **LF** data. In this post, I demonstrate Bi-fidelity modeling performance on a toy model using a Bayesian Neural-Network ensemble and compare it with the Gaussian Process. 
 
-In addition, the Bayesian paradigm propagates uncertainties between fidelities. This is very useful information for surrogate-model-based decision-making.
+In addition, the Bayesian paradigm propagates uncertainties between fidelities. This is very useful information for surrogate-model-based decision-making. A notebook of this work can be found [here](https://www.kaggle.com/kilean/bi-fidel-baggingnn)
 
 
 
@@ -139,6 +139,8 @@ I constructed the bi-fidelity model using *Bagging* NNs in a Bayesian way and co
 
 
 *Thank you, please contact me to leave any comments or questions*
+[email](https://kilean20.github.io/contact/)
+[Github discussion](https://github.com/kilean20/kilean20.github.io/discussions/3)
 
 
 # References
