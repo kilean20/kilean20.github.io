@@ -1,3 +1,3 @@
-# kilean20.github.io
+# [home](kilean20.github.io)
 
-forked from https://github.com/gdmarmerola/gdmarmerola.github.io
+The style-theme of this blos is forked from https://github.com/gdmarmerola/gdmarmerola.github.io, 
